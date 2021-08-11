@@ -1,0 +1,11 @@
+- https://upcloud.com/community/tutorials/installing-lamp-stack-ubuntu/
+- Grant LionAdmin owner on /var/html/www
+- Install phpMyAdmin: https://www.hostnextra.com/kb/how-to-install-apache-mariadb-php-and-phpmyadmin-in-ubuntu-18-04/
+- Fix login issue for root in MariaDB: https://www.linuxquestions.org/questions/linux-software-2/mysql-mariadb-install-root-password-not-working-4175602071/
+- Enable SSL and let's encrypt cert: https://certbot.eff.org/lets-encrypt/ubuntufocal-apache
+- sudo apt-get install jq
+- add db pwd to env variable (nano /etc/apache2/envvars): export DBPWD=mySecretDbPwd
+- add TG bot token to env variable (nano /etc/apache2/envvars): export TG_BOT_TOKEN=1898979735:AAFU5b2LM95eiitGfHZ2X2m-6bE-YNWMJwc
+- add etherscan api key to env variable (nano /etc/apache2/envvars): export ETHSCAN_KEY=GQN1CX4FC9HUDD1BUVS28YMEVVMY7795KJ
+- https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7.1#ubuntu-2004
+- allow htaccess rewrite: (nano /etc/apache2/apache2.conf): For <Directory /var/www/> set AllowOverride All

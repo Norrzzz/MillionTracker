@@ -1,0 +1,5 @@
+*/1 * * * * /usr/bin/pwsh -File "/var/www/jobs/getStats.ps1"
+*/10 * * * * /usr/bin/pwsh -File "/var/www/jobs/getHolders.ps1"
+*/10 * * * * /usr/bin/pwsh -File "/var/www/jobs/getPrice.ps1"
+*/15 * * * * /usr/bin/pwsh -File "/var/www/jobs/getRanks.ps1"
+*/15 * * * * /usr/bin/pwsh -File "/var/www/jobs/getHoldersList.ps1"

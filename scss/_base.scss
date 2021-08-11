@@ -1,0 +1,65 @@
+@font-face {
+    font-family: "Nunito";
+    src: url("../assets/font/Nunito-Regular.ttf");
+}
+
+@font-face {
+    font-family: "NunitoHeading";
+    src: url("../assets/font/Nunito-SemiBold.ttf");
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: colors.$mainBackground;
+    color: colors.$textBlack;
+    font-family: Nunito, Tahoma, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: NunitoHeading, Tahoma, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.7rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.4rem;
+}
+
+h5 {
+    font-size: 1.3rem;
+}
+
+h6 {
+    font-size: 1.2rem;
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+a, a:active, a:visited {
+    color: colors.$mmAccentDark;
+}
+
+a:hover {
+    color: colors.$mmAccent;
+}
+
+canvas {
+    background-color: colors.$contentBackground;
+}

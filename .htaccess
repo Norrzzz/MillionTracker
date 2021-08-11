@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^api$ api.php [QSA,L]
+
+#php_value display_errors On
+#php_flag opcache.enable Off
+Options -Indexes -MultiViews

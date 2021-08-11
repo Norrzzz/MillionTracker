@@ -1,0 +1,325 @@
+@use "variables";
+@use "colors";
+@import "reset";
+@import "base";
+
+%box-shadow {
+    box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+@mixin mobile {
+    @media (maxWidth: #{variables.$tabletWidth - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (minWidth: #{variables.$tabletWidth}) and (maxWidth: #{variables.$desktopWidth - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (minWidth: #{variables.$desktopWidth}) {
+        @content;
+    }
+}
+
+header {
+    @extend %box-shadow;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100px;
+    line-height: 100px;
+    background-color: colors.$headerBackground;
+
+    .banner {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        text-align: center;
+
+        img {
+            width: 60px;
+            height: 60px;
+            margin: 18px 10px;
+        }
+    }
+
+    nav {
+        text-align: right;
+        padding-right: 10px;
+
+        a {
+            white-space: nowrap;
+        }
+    }
+
+}
+
+main {
+    @extend %box-shadow;
+    width: 80%;
+    max-width: 1500px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: colors.$contentBackground;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
+
+.cardsection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
+    margin: 0 auto;
+    padding: 30px 10px;
+
+    .card {
+        @extend %box-shadow;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: colors.$cardBackground;
+        padding: 15px;
+        border-top: 6px solid colors.$cardBorderRed;
+        min-width: 250px;
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        table {
+            margin: 10px auto;
+            width: 80%;
+
+            td {
+                padding: 5px 10px;
+            }
+        }
+    }
+
+    .card:nth-child(2) {
+        border-top: 6px solid colors.$cardBorderBlue;
+    }
+
+    .card:nth-child(3) {
+        border-top: 6px solid colors.$cardBorderYellow;
+    }
+
+    .card:nth-child(4) {
+        border-top: 6px solid colors.$cardBorderGreen;
+    }
+
+    .card:nth-child(5) {
+        border-top: 6px solid colors.$cardBorderPurple;
+    }
+
+    .card:nth-child(6) {
+        border-top: 6px solid colors.$cardBorderCyan;
+    }
+}
+
+.graphsection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: colors.$cardBackground;
+    width: 95%;
+    margin: 15px;
+}
+
+.v-cloak {
+    display: none;
+}
+
+.uptrend {
+    color: colors.$cardBorderGreen;
+}
+
+.downtrend {
+    color: colors.$cardBorderRed;
+}
+
+.smallpercent {
+    font-size: 0.9em;
+}
+
+#linkToOfficialWeb {
+    display: flex;
+    flex-direction: row-reverse;
+
+    a {
+        padding: 12px 15px;
+        background-color: colors.$mmAccentLight;
+        color: colors.$textBlack;
+        border-radius: .25rem;
+        font-size: 1.1rem;
+    }
+
+    a:hover {
+        background-color: colors.$mmAccent;
+    }
+}
+
+.graphbuttons {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+
+    button {
+        margin: 5px 8px;
+        padding: 5px 8px;
+        background-color: colors.$contentBackground;
+        border: none;
+        color: colors.$textBlack;
+    }
+
+    button:hover {
+        color: colors.$mmAccent;
+        cursor: pointer;
+    }
+
+    button.active {
+        color: colors.$mmAccentDark;
+    }
+}
+
+.about {
+    margin: 30px;
+    .about_div {
+        display: flex;
+        flex-direction: row;
+    }
+
+    h2 {
+        font-size: 2.0rem;
+    }
+
+    img {
+        margin: 20px;
+        width: 240px;
+        height: 240px;
+    }
+
+    p {
+        margin: 30px;
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+        word-break: break-word;
+    }
+
+    .donations {
+        font-size: 1rem;
+    }
+}
+
+.graphheader {
+    margin: 10px 15px;
+}
+
+
+
+.topholders {
+    h2 {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        font-size: 2rem;
+    }
+
+    p {
+        margin: 30px;
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+        word-break: break-word;
+        text-align: center;
+    }
+}
+
+#topholders, #searchResult {
+    margin: 10px auto;
+    width: 90%;
+    text-align: left;
+
+    th {
+        font-weight: bold;
+    }
+
+    th, td {
+        padding: 15px 5px;
+        word-break: break-all;
+    }
+
+    td:nth-child(1) {
+        min-width: 50px;
+    }
+
+    td:nth-child(3), td:nth-child(4), td:nth-child(5) {
+        min-width: 70px;
+    }
+
+    tr:hover > td {
+        background-color: colors.$contentHoverBackground;
+    }
+}
+
+.search {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+
+    input {
+        margin: 10px;
+        flex-grow: 4;
+        line-height: 1.5rem;
+        font-size: 1.4rem;
+        padding: 5px;
+        color: colors.$textBlack;
+        border-radius: .25rem;
+    }
+
+    button {
+        margin: 10px;
+        flex-grow: 1;
+        padding: 12px 8px;
+        background-color: colors.$mmAccentLight;
+        color: colors.$textBlack;
+        border-radius: .25rem;
+        font-size: 1.1rem;
+        border: none;
+    }
+
+    button:hover {
+        background-color: colors.$mmAccent;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .cardsection .card {
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .about .about_div {
+        flex-direction: column;
+    }
+
+    main#app {
+        width: 100%;
+    }
+
+    div.search {
+        flex-direction: column;
+    }
+}
