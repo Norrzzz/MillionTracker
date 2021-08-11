@@ -157,7 +157,7 @@
 </div>
 
 <div class="topholders">
-    <h2>Top 100 Holders</h2>
+    <h2>Top Holders</h2>
 
     <p>Top 10 holders control {{ top10pct }}% of Million Token. Top 100 holders control {{ top100pct }}% of Million Token.</p>
     <p>{{ top100Unipct }}% are locked into Uniswap pools, and {{ top100Bscpct }}% is allocated to BSC bridge.</p>
@@ -191,6 +191,7 @@
                 <td v-else-if="holder.address.indexOf('mm1000orbust.eth') == 0"><a href="https://etherscan.io/address/0xd0bffbccb187be4a775752d27529c5858823dd59" target="_blank">{{ holder.address }}</a></td>
                 <td v-else-if="holder.address.indexOf('jacuzzibar.eth') == 0"><a href="https://etherscan.io/address/0x8fba8f8955c03dac1de908d310a3eb835dabcc91" target="_blank">{{ holder.address }}</a></td>
                 <td v-else-if="holder.address.indexOf('bitcoinwizard.eth') == 0"><a href="https://etherscan.io/address/0x913738e96dcd3bad50a4a286fc9a6941e156cdd4" target="_blank">{{ holder.address }}</a></td>
+                <td v-else-if="holder.address.indexOf('9xkiwi.eth') == 0"><a href="https://etherscan.io/address/0x4d3877abc39d131a39ce21dd0675ad3c1e3f3f32" target="_blank">{{ holder.address }}</a></td>
                 <td v-else-if="holder.address.indexOf('Gate.io') == 0"><a href="https://etherscan.io/address/0x0d0707963952f2fba59dd06f2b425ace40b492fe" target="_blank">{{ holder.address }}</a></td>
                 <td v-else-if="holder.address.indexOf('buymilliontokenatmilliontokendotorg.eth') == 0"><a href="https://etherscan.io/address/0x7c7b99634cd523b4af7722f612f68b063db07e36" target="_blank">{{ holder.address }}</a></td>
                 <td v-else-if="holder.address.indexOf('0x') == 0"><a :href="'https://etherscan.io/address/' + holder.address" target="_blank">{{ holder.address }}</a></td>
