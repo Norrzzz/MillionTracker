@@ -130,7 +130,7 @@
                         <img src="/assets/img/discord.png" title="Discord" alt="Discord" />
                     </a>
                 </td>
-                <td>4,603 members</td>
+                <td>{{ community.discord.toLocaleString("en-US") }} members</td>
             </tr>
             <tr>
                 <td>

@@ -19,7 +19,13 @@ try {
     $result = Invoke-RestMethod -Uri $url
     $redditSubscribers = $result.data.subscribers
 
-    mysql -e "INSERT INTO MillionTracker.socialmedia (discord, facebook, instagram, reddit, telegram, twitter) VALUES (0, 0, 0, $redditSubscribers, $telegramMembers, $twitterFollowers);" -u cronuser --password=$env:CRONUSER_PWD
+    # Discord
+    $url = "https://discord.gg/Million"
+    $result = Invoke-RestMethod -Uri $url
+    $discTmp = $result -split "\n" | Select-String "hang out with" | Select-Object -First 1
+    $discordMembers = $discTmp -replace "[^0-9]" , ''
+
+    mysql -e "INSERT INTO MillionTracker.socialmedia (discord, facebook, instagram, reddit, telegram, twitter) VALUES ($discordMembers, 0, 0, $redditSubscribers, $telegramMembers, $twitterFollowers);" -u cronuser --password=$env:CRONUSER_PWD
 
 } catch {
     "[$(Get-Date -Format "U")] GetSocials# $_" | Add-Content -Path "$PSScriptRoot\Errors"
