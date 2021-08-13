@@ -8,7 +8,7 @@
         exit("This site is not supported on Internet Explorer. Please use a modern browser like Chrome, Edge, Firefox or Brave.");
     }
 
-    $devmode = TRUE;
+    $devmode = FALSE;
 ?>
 <!DOCTYPE html>
 <html>

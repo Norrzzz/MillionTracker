@@ -122,7 +122,7 @@
     </div>
 
     <div class="card" v-if="stats != null" v-cloak>
-        <h2>Communities</h2>
+        <h2>Community</h2>
         <table>
             <tr>
                 <td>
@@ -130,7 +130,8 @@
                         <img src="/assets/img/discord.png" title="Discord" alt="Discord" />
                     </a>
                 </td>
-                <td>{{ community.discord.toLocaleString("en-US") }} members</td>
+                <td>{{ community?.discord.toLocaleString("en-US") }} members</td>
+                <td title="Change last 24 hours in percent"><span class="smallpercent" :class="{ 'uptrend': discord1d > 0, 'downtrend': discord1d < 0 }"><span v-if="discord1d > 0">+</span>{{ discord1d }}</span></td>
             </tr>
             <tr>
                 <td>
@@ -138,7 +139,8 @@
                         <img src="/assets/img/reddit.png" title="Reddit" alt="Reddit" />
                     </a>
                 </td>
-                <td>{{ community.reddit.toLocaleString("en-US") }} members</td>
+                <td>{{ community?.reddit.toLocaleString("en-US") }} subscribers</td>
+                <td title="Change last 24 hours in percent"><span class="smallpercent" :class="{ 'uptrend': reddit1d > 0, 'downtrend': reddit1d < 0 }"><span v-if="reddit1d > 0">+</span>{{ reddit1d }}</span></td>
             </tr>
             <tr>
                 <td>
@@ -146,7 +148,8 @@
                         <img src="/assets/img/telegram.png" title="Telegram" alt="Telegram" />
                     </a>
                 </td>
-                <td>{{ community.telegram.toLocaleString("en-US") }} members</td>
+                <td>{{ community?.telegram.toLocaleString("en-US") }} members</td>
+                <td title="Change last 24 hours in percent"><span class="smallpercent" :class="{ 'uptrend': telegram1d > 0, 'downtrend': telegram1d < 0 }"><span v-if="telegram1d > 0">+</span>{{ telegram1d }}</span></td>
             </tr>
             <tr>
                 <td>
@@ -154,7 +157,8 @@
                         <img src="/assets/img/twitter.png" title="Twitter" alt="Twitter" />
                     </a>
                 </td>
-                <td> {{ community.twitter.toLocaleString("en-US") }} followers</td>
+                <td> {{ community?.twitter.toLocaleString("en-US") }} followers</td>
+                <td title="Change last 24 hours in percent"><span class="smallpercent" :class="{ 'uptrend': twitter1d > 0, 'downtrend': twitter1d < 0 }"><span v-if="twitter1d > 0">+</span>{{ twitter1d }}</span></td>
             </tr>
         </table>
     </div>
@@ -162,11 +166,11 @@
 
 <h2 class="graphheader">Price history</h2>
 <div class="graphbuttons">
-    <button :class="{ 'active': dataForXDays == 9999 }" @click="dataForXDays = 9999; init()">ALL</button>
-    <button :class="{ 'active': dataForXDays == 30 }" @click="dataForXDays = 30; init()">1M</button>
-    <button :class="{ 'active': dataForXDays == 7 }" @click="dataForXDays = 7; init()">7D</button>
-    <button :class="{ 'active': dataForXDays == 3 }" @click="dataForXDays = 3; init()">3D</button>
-    <button :class="{ 'active': dataForXDays == 1 }" @click="dataForXDays = 1; init()">1D</button>
+    <button :class="{ 'active': dataForXDaysPrice == 9999 }" @click="dataForXDaysPrice = 9999; init()">ALL</button>
+    <button :class="{ 'active': dataForXDaysPrice == 30 }" @click="dataForXDaysPrice = 30; init()">1M</button>
+    <button :class="{ 'active': dataForXDaysPrice == 7 }" @click="dataForXDaysPrice = 7; init()">7D</button>
+    <button :class="{ 'active': dataForXDaysPrice == 3 }" @click="dataForXDaysPrice = 3; init()">3D</button>
+    <button :class="{ 'active': dataForXDaysPrice == 1 }" @click="dataForXDaysPrice = 1; init()">1D</button>
 </div>
 <div class="graphsection">
     <canvas id="pricegraph"></canvas>
@@ -176,15 +180,31 @@
 
 <h2 class="graphheader">Holders history</h2>
 <div class="graphbuttons">
-    <button :class="{ 'active': dataForXDays == 9999 }" @click="dataForXDays = 9999; init()">ALL</button>
-    <button :class="{ 'active': dataForXDays == 30 }" @click="dataForXDays = 30; init()">1M</button>
-    <button :class="{ 'active': dataForXDays == 7 }" @click="dataForXDays = 7; init()">7D</button>
-    <button :class="{ 'active': dataForXDays == 3 }" @click="dataForXDays = 3; init()">3D</button>
-    <button :class="{ 'active': dataForXDays == 1 }" @click="dataForXDays = 1; init()">1D</button>
+    <button :class="{ 'active': dataForXDaysHolders == 9999 }" @click="dataForXDaysHolders = 9999; init()">ALL</button>
+    <button :class="{ 'active': dataForXDaysHolders == 30 }" @click="dataForXDaysHolders = 30; init()">1M</button>
+    <button :class="{ 'active': dataForXDaysHolders == 7 }" @click="dataForXDaysHolders = 7; init()">7D</button>
+    <button :class="{ 'active': dataForXDaysHolders == 3 }" @click="dataForXDaysHolders = 3; init()">3D</button>
+    <button :class="{ 'active': dataForXDaysHolders == 1 }" @click="dataForXDaysHolders = 1; init()">1D</button>
 </div>
 <div class="graphsection">
     <canvas id="holdergraph"></canvas>
 </div>
+
+<br />
+
+<h2 class="graphheader">Community history</h2>
+<div class="graphbuttons">
+    <button :class="{ 'active': dataForXDaysSocials == 9999 }" @click="dataForXDaysSocials = 9999; init()">ALL</button>
+    <button :class="{ 'active': dataForXDaysSocials == 30 }" @click="dataForXDaysSocials = 30; init()">1M</button>
+    <button :class="{ 'active': dataForXDaysSocials == 7 }" @click="dataForXDaysSocials = 7; init()">7D</button>
+    <button :class="{ 'active': dataForXDaysSocials == 3 }" @click="dataForXDaysSocials = 3; init()">3D</button>
+    <button :class="{ 'active': dataForXDaysSocials == 1 }" @click="dataForXDaysSocials = 1; init()">1D</button>
+</div>
+<div class="graphsection">
+    <canvas id="socialsgraph"></canvas>
+</div>
+
+<br />
 
 <div class="about">
     <div class="about_div">

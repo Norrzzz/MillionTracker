@@ -6,7 +6,11 @@ const app_Main = new Vue({
     data: {
         priceChart: null,
         holderChart: null,
+        socialsChart: null,
         dataForXDays: 7,
+        dataForXDaysPrice: 7,
+        dataForXDaysHolders: 7,
+        dataForXDaysSocials: 7,
         holders: [],
         monthlyHolders: [],
         prices: [],
@@ -126,7 +130,7 @@ const app_Main = new Vue({
 
             if (update === true) {
                 self.priceChart.data = data
-                switch (this.dataForXDays) {
+                switch (this.dataForXDaysPrice) {
                     case 1:
                         self.priceChart.options.scales.x.time.minUnit = 'hour'
                         break;
@@ -294,7 +298,7 @@ const app_Main = new Vue({
 
             if (update === true) {
                 self.holderChart.data = data
-                switch (this.dataForXDays) {
+                switch (this.dataForXDaysHolders) {
                     case 1:
                         self.holderChart.options.scales.x.time.minUnit = 'hour'
                         break;
@@ -311,6 +315,152 @@ const app_Main = new Vue({
             } else {
                 self.holderChart = new Chart(
                     document.getElementById('holdergraph'),
+                    config
+                )
+            }
+        },
+        initSocialsChart(update) {
+            let self = this
+
+            const data = {
+                datasets: [{
+                    label: 'Discord',
+                    data: self.socials,
+                    backgroundColor: '#7389DCBA',
+                    borderColor: '#7389DCCA',
+                    borderWidth: 2,
+                    parsing: {
+                        xAxisKey: 'time',
+                        yAxisKey: 'discord'
+                    },
+                    pointStyle: 'circle',
+                    pointRadius: 0.2,
+                    hoverRadius: 3
+                },
+                {
+                    label: 'Reddit',
+                    data: self.socials,
+                    backgroundColor: '#cf022bBA',
+                    borderColor: '#cf022bCA',
+                    borderWidth: 2,
+                    parsing: {
+                        xAxisKey: 'time',
+                        yAxisKey: 'reddit'
+                    },
+                    pointStyle: 'circle',
+                    pointRadius: 0.2,
+                    hoverRadius: 3
+                },
+                {
+                    label: 'Telegram',
+                    data: self.socials,
+                    backgroundColor: '#28A8E8BA',
+                    borderColor: '#28A8E8CA',
+                    borderWidth: 2,
+                    parsing: {
+                        xAxisKey: 'time',
+                        yAxisKey: 'telegram'
+                    },
+                    pointStyle: 'circle',
+                    pointRadius: 0.2,
+                    hoverRadius: 3
+                },
+                {
+                    label: 'Twitter',
+                    data: self.socials,
+                    backgroundColor: '#1762C2BA',
+                    borderColor: '#1762C2CA',
+                    borderWidth: 2,
+                    parsing: {
+                        xAxisKey: 'time',
+                        yAxisKey: 'twitter'
+                    },
+                    pointStyle: 'circle',
+                    pointRadius: 0.2,
+                    hoverRadius: 3
+                }]
+            }
+
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    animation: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            position: 'nearest'
+                        },
+                        zoom: {
+                            pan: {
+                                enabled: true,
+                                mode: 'x'
+                            },
+                            zoom: {
+                                wheel: {
+                                    enabled: true,
+                                },
+                                pinch: {
+                                    enabled: true
+                                },
+                                mode: 'x'
+                            },
+                            limits: {
+                                x: {
+                                    min: 'original',
+                                    max: 'original'
+                                },
+                                y: {
+                                    min: 'original',
+                                    max: 'original'
+                                }
+                            }
+                        }
+                      },
+                    responsive: true,
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                minUnit: 'day',
+                                tooltipFormat: 'll HH:mm',
+                                displayFormats: {
+                                    'day': 'MMM DD',
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: "Time (UTC)"
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (update === true) {
+                self.socialsChart.data = data
+                switch (this.dataForXDaysSocials) {
+                    case 1:
+                        self.socialsChart.options.scales.x.time.minUnit = 'hour'
+                        break;
+
+                    default:
+                        self.socialsChart.options.scales.x.time.minUnit = 'day'
+                        break;
+                }
+                
+                self.socialsChart.update()
+                self.socialsChart.resetZoom()
+            } else {
+                self.socialsChart = new Chart(
+                    document.getElementById('socialsgraph'),
                     config
                 )
             }
@@ -420,22 +570,27 @@ const app_Main = new Vue({
         },
         async init() {
             await this.getMonthlyHolders()
-            await this.getHolders(this.dataForXDays)
-            await this.getPrice(this.dataForXDays)
+            await this.getHolders(this.dataForXDaysHolders)
+            await this.getPrice(this.dataForXDaysPrice)
             await this.getStats()
             await this.getRanks()
-            await this.getSocials(this.dataForXDays)
+            await this.getSocials(this.dataForXDaysSocials)
             if (this.priceChart == null) {
                 this.initPriceChart()
             } else {
                 this.initPriceChart(true)
             }
 
-            
             if (this.holderChart == null) {
                 this.initHolderChart()
             } else {
                 this.initHolderChart(true)
+            }
+            
+            if (this.socialsChart == null) {
+                this.initSocialsChart()
+            } else {
+                this.initSocialsChart(true)
             }
 
             await this.getTop1000()
@@ -503,6 +658,46 @@ const app_Main = new Vue({
                 let pastHolders = this.monthlyHolders.find(day => day.time > monthago).total
                 let currentHolders = this.monthlyHolders[this.monthlyHolders.length - 1].total
                 return this.showTwoDecimals((((currentHolders / pastHolders) * 100) - 100))
+            }
+        },
+        discord1d: function () {
+            if (this.socials.length > 0) {
+                let yesterday = this.addDate(this.getUTCDate(new Date()), -1, 'day')
+                let pastNumber = this.socials.find(day => day.time > yesterday)
+                let currentNumber = this.socials[this.socials.length - 1]
+                if (this.notNullEmptyOrUndefined(pastNumber) && this.notNullEmptyOrUndefined(currentNumber)) {
+                    return currentNumber.discord - pastNumber.discord
+                }
+            }
+        },
+        reddit1d: function () {
+            if (this.socials.length > 0) {
+                let yesterday = this.addDate(this.getUTCDate(new Date()), -1, 'day')
+                let pastNumber = this.socials.find(day => day.time > yesterday)
+                let currentNumber = this.socials[this.socials.length - 1]
+                if (this.notNullEmptyOrUndefined(pastNumber) && this.notNullEmptyOrUndefined(currentNumber)) {
+                    return currentNumber.reddit - pastNumber.reddit
+                }
+            }
+        },
+        telegram1d: function () {
+            if (this.socials.length > 0) {
+                let yesterday = this.addDate(this.getUTCDate(new Date()), -1, 'day')
+                let pastNumber = this.socials.find(day => day.time > yesterday)
+                let currentNumber = this.socials[this.socials.length - 1]
+                if (this.notNullEmptyOrUndefined(pastNumber) && this.notNullEmptyOrUndefined(currentNumber)) {
+                    return currentNumber.telegram - pastNumber.telegram
+                }
+            }
+        },
+        twitter1d: function () {
+            if (this.socials.length > 0) {
+                let yesterday = this.addDate(this.getUTCDate(new Date()), -1, 'day')
+                let pastNumber = this.socials.find(day => day.time > yesterday)
+                let currentNumber = this.socials[this.socials.length - 1]
+                if (this.notNullEmptyOrUndefined(pastNumber) && this.notNullEmptyOrUndefined(currentNumber)) {
+                    return currentNumber.twitter - pastNumber.twitter
+                }
             }
         },
         volume1d: function () {
