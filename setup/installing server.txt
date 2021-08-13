@@ -7,5 +7,6 @@
 - add db pwd to env variable (nano /etc/apache2/envvars): export DBPWD=mySecretDbPwd
 - add TG bot token to env variable (nano /etc/apache2/envvars): export TG_BOT_TOKEN=
 - add etherscan api key to env variable (nano /etc/apache2/envvars): export ETHSCAN_KEY=
+- add Million Tracker api key to env variable (nano /etc/apache2/envvars): export MT_API_KEY=
 - https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7.1#ubuntu-2004
 - allow htaccess rewrite: (nano /etc/apache2/apache2.conf): For <Directory /var/www/> set AllowOverride All
