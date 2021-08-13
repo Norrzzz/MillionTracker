@@ -25,7 +25,7 @@
         exitError('Failed to decode JSON object');
     }
 
-    if (array_key_exists("key", $object) && $object["key"] === "aZGWwStumUkpc2Aih8L2M4rH") {
+    if (array_key_exists("key", $object) && $object["key"] === getenv("MT_API_KEY")) {
 
         if (array_key_exists("action", $object) && $object["action"] === "holders") {
             $holders = $BackendAPI->getHolders(1);
