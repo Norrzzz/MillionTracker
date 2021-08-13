@@ -173,6 +173,11 @@
             return $this->DB->Query("SELECT * FROM ranks WHERE id = 1;");
         }
 
+        function getSocials($lastXDays = 7) {
+            $startDate = (new DateTime("- $lastXDays days"))->format("Y-m-d H:i:s");
+            return $this->DB->Query("SELECT * FROM socialmedia WHERE time > ?;", array($startDate), "s");
+        }
+
         function addIP($address, $agent) {
             $res = $this->DB->Query("INSERT INTO accesslog (address, agent) VALUES (?, ?);", array($address, $agent), "ss");
             if ($res <> "OK") {

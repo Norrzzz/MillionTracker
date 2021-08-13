@@ -43,6 +43,10 @@
                 "text" => "Current holders count is ".$last["total"]." (".$last["eth"]." ETH and ".$last["bsc"]." BSC). Change last 24 hours: $changeNum (".$change24h."%)."
             );
 
+        } elseif (array_key_exists("action", $object) && $object["action"] === "socials") {
+            $socials = $BackendAPI->getSocials(1);
+            $out = $socials[count($socials) - 1];
+
         } elseif (array_key_exists("action", $object) && $object["action"] === "price") {
             $stats = $BackendAPI->getStats();
             $price = number_format($stats[0]["price"], 2);

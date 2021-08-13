@@ -3,3 +3,4 @@
 */10 * * * * /usr/bin/pwsh -File "/var/www/jobs/getPrice.ps1"
 */15 * * * * /usr/bin/pwsh -File "/var/www/jobs/getRanks.ps1"
 */15 * * * * /usr/bin/pwsh -File "/var/www/jobs/getHoldersList.ps1"
+*/30 * * * * /usr/bin/pwsh -File "/var/www/jobs/getSocials.ps1"

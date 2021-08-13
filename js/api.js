@@ -35,8 +35,11 @@ var api = new Vue({
         async getRanks() {
             return this.newRequest('getRanks').then(response => { return response })
         },
+        async getSocials(days) {
+            return this.newRequest('getSocials', { days }).then(response => { return response })
+        },
         async getTop100() {
-            return this.newRequest('getTopHundred').then(response => { return response })
+            return this.newRequest('getTopHolders').then(response => { return response })
         }
     }
 });

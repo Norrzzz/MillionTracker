@@ -66,6 +66,39 @@
         </table>
     </div>
 
+    <div class="card" v-if="ranks != null" v-cloak>
+        <h2>Ranks</h6>
+        <table>
+            <tr>
+                <td title="Rank by marketcap on CoinGecko">
+                    <a href="https://www.coingecko.com/en/coins/million" target="_blank">CoinGecko</a>
+                </td>
+                <td>#{{ ranks?.coingecko.toLocaleString("en-US") }}</td>
+            </tr>
+            <tr>
+                <td title="Rank by marketcap on Nomics">
+                    <a href="https://nomics.com/assets/mm4-million" target="_blank">Nomics</a>
+                </td>
+                <td>#{{ ranks?.nomics.toLocaleString("en-US") }}</td>
+            </tr>
+            <tr>
+                <td title="Rank on DEXTools Hot Pairs list">
+                    <a href="https://www.dextools.io/app/uniswap/pair-explorer/0x84383fb05f610222430f69727aa638f8fdbf5cc1" target="_blank">DEXTools</a>
+                </td>
+                <td>
+                    <span v-if="ranks?.dextools > 0">#{{ ranks?.dextools }}</span>
+                    <span v-else>#NA</span>
+                </td>
+            </tr>
+            <tr>
+                <td title="Rank by marketcap on CoinMarketCap">
+                    <a href="https://coinmarketcap.com/currencies/million/" target="_blank">CoinMarketCap</a>
+                </td>
+                <td>#{{ ranks?.coinmarketcap.toLocaleString("en-US") }}</td>
+            </tr>
+        </table>
+    </div>
+
     <div class="card" v-if="stats != null" v-cloak>
         <h2>Tokenomics</h2>
         <table>
@@ -88,29 +121,40 @@
         </table>
     </div>
 
-    <div class="card" v-if="ranks != null" v-cloak>
-        <h2>Ranks</h6>
+    <div class="card" v-if="stats != null" v-cloak>
+        <h2>Communities</h2>
         <table>
             <tr>
-                <td title="Rank by marketcap on CoinGecko">CoinGecko</td>
-                <td><a href="https://www.coingecko.com/en/coins/million" target="_blank">#{{ ranks?.coingecko.toLocaleString("en-US") }}</a></td>
-            </tr>
-            <tr>
-                <td title="Rank by marketcap on Nomics">Nomics</td>
-                <td><a href="https://nomics.com/assets/mm4-million" target="_blank">#{{ ranks?.nomics.toLocaleString("en-US") }}</a></td>
-            </tr>
-            <tr>
-                <td title="Rank on DEXTools Hot Pairs list">DEXTools</td>
                 <td>
-                    <a href="https://www.dextools.io/app/uniswap/pair-explorer/0x84383fb05f610222430f69727aa638f8fdbf5cc1" target="_blank">
-                        <span v-if="ranks?.dextools > 0">#{{ ranks?.dextools }}</span>
-                        <span v-else>#NA</span>
+                    <a href="https://discord.com/invite/million" target="_blank">
+                        <img src="/assets/img/discord.png" title="Discord" alt="Discord" />
                     </a>
                 </td>
+                <td>4,603 members</td>
             </tr>
             <tr>
-                <td title="Rank by marketcap on CoinMarketCap">CoinMarketCap</td>
-                <td><a href="https://coinmarketcap.com/currencies/million/" target="_blank">#{{ ranks?.coinmarketcap.toLocaleString("en-US") }}</a></td>
+                <td>
+                    <a href="https://www.reddit.com/r/milliontoken/" target="_blank">
+                        <img src="/assets/img/reddit.png" title="Reddit" alt="Reddit" />
+                    </a>
+                </td>
+                <td>{{ community.reddit.toLocaleString("en-US") }} members</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://t.me/MilliontokensOfficial" target="_blank">
+                        <img src="/assets/img/telegram.png" title="Telegram" alt="Telegram" />
+                    </a>
+                </td>
+                <td>{{ community.telegram.toLocaleString("en-US") }} members</td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://twitter.com/Million__Token" target="_blank">
+                        <img src="/assets/img/twitter.png" title="Twitter" alt="Twitter" />
+                    </a>
+                </td>
+                <td> {{ community.twitter.toLocaleString("en-US") }} followers</td>
             </tr>
         </table>
     </div>

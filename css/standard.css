@@ -186,7 +186,7 @@ footer {
   background-color: #fbfbfb;
   padding: 15px;
   border-top: 6px solid #cf022b;
-  min-width: 250px;
+  min-width: 350px;
 }
 .cardsection .card h2 {
   margin-bottom: 10px;
@@ -197,6 +197,11 @@ footer {
 }
 .cardsection .card table td {
   padding: 5px 10px;
+}
+.cardsection .card img {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
 }
 .cardsection .card:nth-child(2) {
   border-top: 6px solid #457b9d;

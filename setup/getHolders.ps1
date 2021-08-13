@@ -8,8 +8,8 @@ try {
         [int]$BscHolders = (($Response -split "`n" | sls " addresses") -replace " addresses").trim() -replace ","
         $Holders = $EthHolders + $BscHolders
     
-        mysql -e "INSERT INTO MillionTracker.holdersv2 (total, eth, bsc) VALUES ($Holders, $EthHolders, $BscHolders)" -u cronuser --password=<pwd>
-        mysql -e "UPDATE MillionTracker.stats SET holders = $Holders WHERE id = 1;" -u cronuser --password=<pwd>
+        mysql -e "INSERT INTO MillionTracker.holdersv2 (total, eth, bsc) VALUES ($Holders, $EthHolders, $BscHolders)" -u cronuser --password=$env:CRONUSER_PWD
+        mysql -e "UPDATE MillionTracker.stats SET holders = $Holders WHERE id = 1;" -u cronuser --password=$env:CRONUSER_PWD
     
     } catch {
            "[$(Get-Date -Format "U")] GetHolders# $_" | Add-Content -Path "$PSScriptRoot\Errors"

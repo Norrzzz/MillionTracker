@@ -19,6 +19,11 @@
             echo outJson($BackendAPI->getPrice($_POST['days']));
             break;
         
+        case 'getSocials':
+            if (!isset($_POST['days']) || !Validator::validateNumber($_POST['days'])) { exitInvalidInput('Invalid days'); }
+            echo outJson($BackendAPI->getSocials($_POST['days']));
+            break;
+        
         case 'getStats':
             echo outJson($BackendAPI->getStats(), true);
             break;
@@ -27,7 +32,7 @@
             echo outJson($BackendAPI->getRanks(), true);
             break;
         
-        case 'getTopHundred':
+        case 'getTopHolders':
             echo outJson($BackendAPI->getTop1000(), true);
             break;
 

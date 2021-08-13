@@ -13,6 +13,7 @@ const app_Main = new Vue({
         ranks: null,
         search: "",
         searchError: null,
+        socials: [],
         stats: null,
         top100: [],
         top1000: [],
@@ -346,6 +347,20 @@ const app_Main = new Vue({
                 console.log(e)
             }
         },
+        async getSocials(days) {
+            let self = this
+
+            try {
+                await api.getSocials(days).then((response) => {
+                    response.forEach(element => {
+                        element.time = new Date(element.time)
+                    })
+                    self.socials = response
+                })
+            } catch (e) {
+                console.log(e)
+            }
+        },
         async getMonthlyHolders() {
             let self = this
 
@@ -409,6 +424,7 @@ const app_Main = new Vue({
             await this.getPrice(this.dataForXDays)
             await this.getStats()
             await this.getRanks()
+            await this.getSocials(this.dataForXDays)
             if (this.priceChart == null) {
                 this.initPriceChart()
             } else {
@@ -555,6 +571,11 @@ const app_Main = new Vue({
                 let pct = 0
                 this.top100.filter(e => e.address.indexOf("AnySwap: BSC Bridge") < 0 && e.address.indexOf("Uniswap") < 0).forEach(o => { pct += parseFloat(o.percentage) })
                 return pct.toFixed(2)
+            }
+        },
+        community: function () {
+            if (this.socials.length > 0) {
+                return this.socials[this.socials.length - 1]
             }
         }
     },

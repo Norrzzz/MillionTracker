@@ -66,3 +66,15 @@ CREATE TABLE top1000 (
     value BIGINT NOT NULL,
     PRIMARY KEY (id)
 ); 
+
+CREATE TABLE socialmedia (
+    id int NOT NULL AUTO_INCREMENT,
+	time datetime NOT NULL DEFAULT NOW(),
+    discord int NOT NULL DEFAULT 0,
+    facebook int NOT NULL DEFAULT 0,
+    instagram int NOT NULL DEFAULT 0,
+    reddit int NOT NULL DEFAULT 0,
+    telegram int NOT NULL DEFAULT 0,
+    twitter int NOT NULL DEFAULT 0,
+    PRIMARY KEY (id)
+); 

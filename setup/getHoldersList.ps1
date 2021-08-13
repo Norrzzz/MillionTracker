@@ -28,7 +28,7 @@ try {
     }) -join ", "
 
     mysql -e "TRUNCATE TABLE MillionTracker.top1000;" -u cronuser --password=<pwd>
-    mysql -e "INSERT INTO MillionTracker.top1000 (rank, address, quantity, percentage, value) VALUES $SQLInsert;" -u cronuser --password=<pwd>
+    mysql -e "INSERT INTO MillionTracker.top1000 (rank, address, quantity, percentage, value) VALUES $SQLInsert;" -u cronuser --password=$env:CRONUSER_PWD
 } catch {
     "[$(Get-Date -Format "U")] GetTop100# $_" | Add-Content -Path "$PSScriptRoot\Errors"
 }
