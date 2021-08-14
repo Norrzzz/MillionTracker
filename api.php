@@ -60,7 +60,7 @@
         } elseif (array_key_exists("action", $object) && $object["action"] === "volume") {
             $stats = $BackendAPI->getStats();
             $currentVolume = number_format($stats[0]["volume1d"], 0);
-            $volumeChange24H = $stats[0]["volume1dpct"];
+            $volumeChange24H = $stats[0]["volume1dpct"] * 100;
             $out = array(
                 "volume24h" => $currentVolume,
                 "volume24hpct" => $volumeChange24H,
