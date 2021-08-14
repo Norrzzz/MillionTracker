@@ -108,11 +108,11 @@
             </tr>
             <tr>
                 <td title="How many coins are in circulation or holding?">Circulating supply</td>
-                <td>1,000,000 MM</td>
+                <td>1,000,000</td>
             </tr>
             <tr>
                 <td title="How many Million coins can there ever be?">Max supply</td>
-                <td>1,000,000 MM</td>
+                <td>1,000,000</td>
             </tr>
             <tr>
                 <td title="Million token will never be valued at less than $1.">Minimum price</td>
