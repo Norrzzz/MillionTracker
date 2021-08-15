@@ -211,7 +211,7 @@
         <img src="/assets/img/golden_lion.png" title="Million Token" alt="Million Token" />
         <div id="about_div_div">
             <p><strong>Million Token</strong> is a decentralized digital currency pegged to a minimum value of 1.00 $USDC with a fixed-supply of 1,000,000 tokens, for a total market cap of 1,000,000+ $USDC. Million Token was founded by an ex-Google / ex-Facebook Tech Lead with over 1,000,000 subscribers on YouTube (as a millionaire).</p>
-            <p><strong>Million Tracker</strong> is a tool to watch the progress and real-time metrics of this amazing crypto token without being too daunting for inexperienced users. Info boxes are updates every 2 minutes, while graph is updated every 10 minutes. This is a passion project of mine and any feedback would be much appreciated.</p>
+            <p><strong>Million Tracker</strong> is a tool to watch the progress and real-time metrics of this amazing crypto token without being too daunting for inexperienced users. Info boxes are updates every 2 minutes, while graph is updated every 10 minutes.</p>
         </div>
     </div>
 
