@@ -334,7 +334,7 @@ const app_Main = new Vue({
                         yAxisKey: 'discord'
                     },
                     pointStyle: 'circle',
-                    pointRadius: 0.2,
+                    pointRadius: 0.1,
                     hoverRadius: 3
                 },
                 {
@@ -348,7 +348,7 @@ const app_Main = new Vue({
                         yAxisKey: 'reddit'
                     },
                     pointStyle: 'circle',
-                    pointRadius: 0.2,
+                    pointRadius: 0.1,
                     hoverRadius: 3
                 },
                 {
@@ -362,7 +362,7 @@ const app_Main = new Vue({
                         yAxisKey: 'telegram'
                     },
                     pointStyle: 'circle',
-                    pointRadius: 0.2,
+                    pointRadius: 0.1,
                     hoverRadius: 3
                 },
                 {
@@ -376,7 +376,7 @@ const app_Main = new Vue({
                         yAxisKey: 'twitter'
                     },
                     pointStyle: 'circle',
-                    pointRadius: 0.2,
+                    pointRadius: 0.1,
                     hoverRadius: 3
                 }]
             }
