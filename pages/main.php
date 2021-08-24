@@ -144,7 +144,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="https://t.me/MilliontokensOfficial" target="_blank">
+                    <a href="https://t.me/millionjacuzzibar" target="_blank">
                         <img src="/assets/img/telegram.png" title="Telegram" alt="Telegram" />
                     </a>
                 </td>
