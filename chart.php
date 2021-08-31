@@ -90,7 +90,7 @@
     $minVal = $draw->myData->getMin("item1");
 
     $typeTitle = "$type last 7 days";
-    $subTitle = "Min: $itemUnit$minVal Max: $itemUnit$maxVal";
+    $subTitle = "Min $itemUnit$minVal  Max $itemUnit$maxVal";
     
     # Draw background
     $draw->drawGradientArea(0, 0, $width, $height, DIRECTION_VERTICAL, [
