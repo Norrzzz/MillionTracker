@@ -89,7 +89,8 @@
     $maxVal = $draw->myData->getMax("item1");
     $minVal = $draw->myData->getMin("item1");
 
-    $subTitle = "$type last 7 days - Min: $itemUnit$minVal, Max: $itemUnit$maxVal";
+    $typeTitle = "$type last 7 days";
+    $subTitle = "Min: $itemUnit$minVal Max: $itemUnit$maxVal";
     
     # Draw background
     $draw->drawGradientArea(0, 0, $width, $height, DIRECTION_VERTICAL, [
@@ -116,7 +117,13 @@
         "Color" => $titleColor
     ]);
 
-    $draw->drawText(($width / 2) + 310, 40, $subTitle, [
+    $draw->drawText(($width / 2) + 90, 40, $typeTitle, [
+        "Align" => TEXT_ALIGN_MIDDLEMIDDLE,
+        "FontSize" => 32,
+        "Color" => $titleColor
+    ]);
+
+    $draw->drawText(($width / 2) + 420, 40, $subTitle, [
         "Align" => TEXT_ALIGN_MIDDLEMIDDLE,
         "FontSize" => 20,
         "Color" => $titleColor
