@@ -3,6 +3,9 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^api$ api.php [QSA,L]
+RewriteRule ^chart/(.*)/(.*)$ chart.php?type=$1&rand=$2  [QSA,L]
+RewriteRule ^chart/(.*)$ chart.php?type=$1  [QSA,L]
+RewriteRule ^chart$ chart.php [QSA,L]
 
 #php_value display_errors On
 #php_flag opcache.enable Off
